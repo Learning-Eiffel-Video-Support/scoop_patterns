@@ -8,6 +8,8 @@ class
 inherit
 	TEST_SET_SUPPORT
 
+	START_HERE_DOCS
+
 feature -- Test routines
 
 	do_nothing_tests

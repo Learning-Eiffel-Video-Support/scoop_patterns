@@ -12,6 +12,8 @@ class
 inherit
 	TEST_SET_SUPPORT
 
+	START_HERE_DOCS
+
 feature -- Test routines
 
 	test_1_f_of_x
