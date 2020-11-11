@@ -14,10 +14,11 @@ inherit
 
 feature -- Test routines
 
-	test_1
+	test_1_f_of_x
 			-- Example 1
 		note
-			testing:  "covers/{APPLICATION}.make",
+			testing:  "covers/{SEPARATE_CALLS_TEST_SET}.do_call",
+						"covers/{X}.f",
 						"execution/isolated",
 						"execution/serial"
 			explanation: "[
@@ -52,6 +53,11 @@ feature -- Test routines
 			-- Test code showing the difference between synchronous and asynchronous
 			--	running code.
 		note
+			testing:  "covers/{SEPARATE_CALLS_TEST_SET}.do_call",
+						"covers/{SEPARATE_CALLS_TEST_SET}.do_query",
+						"covers/{X}.f", "covers/{X}.my_query",
+						"execution/isolated",
+						"execution/serial"
 			explanation: "[
 				The call to `do_call' will run synchronously. The call to `do_query' will not.
 				Take a look at `do_query' (below) and read the notes to understand why.
