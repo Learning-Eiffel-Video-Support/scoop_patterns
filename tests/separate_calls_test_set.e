@@ -49,6 +49,7 @@ feature -- Test routines
 					"src=$(system_path)/docs/separate_calls_test_1_call_to_f_callstack.PNG"
 		do
 			do_call (create {separate X})
+			do_another_call (create {separate X})
 		end
 
 	test_2_synch_vs_asynch
@@ -97,6 +98,14 @@ feature {NONE} -- Implementation: Test Support
 			my_x.f (42)
 		end
 
+	do_another_call (my_x: separate X)
+			-- Object {X} is now controlled because it is
+			-- 	an argument of this feature. The separate-call
+			--	below is now a valid and controlled separate-call.
+		do
+			my_x.f (42)
+		end
+
 	do_query (my_x: separate X)
 			-- Attempt a separate synchronous call on `my_x'.
 			--	However, it runs synchronous and not asynch. Why?
@@ -127,6 +136,15 @@ feature {NONE} -- Implementation: Test Support
 		do
 			assert_integers_equal ("43", 43, my_x.my_query (42))
 		end
+
+	do_another_query (my_x: separate X)
+			-- While `my_x' as an argument is valid and controlled,
+			--	the separate-call to `my_x.my_query' must wait for
+			--	the Result to come back from the separate-processor.
+		do
+			assert_integers_equal ("43", 43, my_x.my_query (42))
+		end
+
 
 end
 
