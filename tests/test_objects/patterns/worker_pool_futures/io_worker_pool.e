@@ -180,6 +180,9 @@ feature -- Basic operations
 
 					-- Check if the result is still `content', as it was written earlier.
 				check same_result: attached l_result and then l_result.ends_with (content) end
+				check has_result: attached l_result as al_result then
+					assert_booleans_equal ("result_has_content", True, al_result.has_substring (content))
+				end
 			end
 		end
 
