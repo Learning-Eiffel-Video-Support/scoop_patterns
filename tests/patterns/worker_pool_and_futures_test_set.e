@@ -22,9 +22,12 @@ feature -- Test routines
 						"covers/{FILE_APPENDER_TASK}",
 						"execution/isolated",
 						"execution/serial"
+		local
+			l_io: IO_WORKER_POOL
 		do
 			reader_appender_raw_tests	-- Ensure our raw reader/appender classes perform
 			reset_test_data_dir			-- Reset the tests/data folder
+			create l_io.make			-- Examine `make' to understand process
 		end
 
 feature {NONE} -- Implementation: Prep Tests
@@ -67,15 +70,19 @@ feature {NONE} -- Implementation: Helpers
 			if not l_dir.is_closed then
 				l_dir.close
 			end
-			new_a_text_file
+			new_empty_text_files
 		end
 
-	new_a_text_file
+	new_empty_text_files
 			-- Make a new a.txt file.
 		local
 			l_file: PLAIN_TEXT_FILE
 		do
 			create l_file.make_create_read_write ("./tests/data/a.txt")
+			l_file.close
+			create l_file.make_create_read_write ("./tests/data/b.txt")
+			l_file.close
+			create l_file.make_create_read_write ("./tests/data/c.txt")
 			l_file.close
 		end
 

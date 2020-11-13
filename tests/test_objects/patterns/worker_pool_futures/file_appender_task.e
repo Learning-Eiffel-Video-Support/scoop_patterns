@@ -45,12 +45,12 @@ feature -- Basic operations
 
 	run
 			-- <Precursor>
-	local
-		l_file: PLAIN_TEXT_FILE
-	do
-		create l_file.make_open_append (path)
-		l_file.put_string (content)
-		l_file.close
-	end
+		local
+			l_file: PLAIN_TEXT_FILE
+		do
+			create l_file.make_open_append (path)
+			l_file.put_string (content)
+			l_file.close
+		end
 
 end
