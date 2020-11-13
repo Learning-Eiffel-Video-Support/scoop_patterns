@@ -41,9 +41,6 @@ feature {NONE} -- Initialization
 			default_create -- From {TEST_SET_SUPPORT} to set environment.
 							-- Allows us to use test-assertion-calls in this code.
 
-				-- Make sure we don't have any leftover files from the last run.
-			delete_all
-
 				-- Create the worker pools.
 			create worker_pool.make (100, 4)
 			create executor.make (worker_pool)
@@ -53,23 +50,6 @@ feature {NONE} -- Initialization
 
 				-- Stop the executor. This is necessary such that the application can terminate.
 			executor.stop
-
-				-- Clean all files.
-			delete_all
-		end
-
-	delete_all
-			-- Delete all files.
-		local
-			file: PLAIN_TEXT_FILE
-		do
-			across
-				paths as cursor
-			loop
-				create file.make_open_write (cursor.item)
-				file.close
-				file.delete
-			end
 		end
 
 feature -- Basic operations
