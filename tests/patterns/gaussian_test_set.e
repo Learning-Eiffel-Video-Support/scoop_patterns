@@ -17,6 +17,8 @@ feature -- Test routines
 		note
 			testing:  "covers/{GAUSS_APPLICATION}",
 						"execution/serial", "execution/isolated"
+			EIS: "name=gaussian_elimination_solution",
+					"src=https://www.youtube.com/watch?v=2j5Ic2V7wq4"
 		local
 			l_demo: GAUSS_APPLICATION
 		do
