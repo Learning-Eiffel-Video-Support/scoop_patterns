@@ -1,8 +1,6 @@
 note
 	description: "A system of linear equations that uses the future pattern for gaussian elimination."
 	author: "Roman Schmocker"
-	date: "$Date$"
-	revision: "$Revision$"
 
 class
 	FUTURE_GAUSS_ELIMINATION

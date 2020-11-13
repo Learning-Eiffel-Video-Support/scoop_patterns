@@ -1,8 +1,6 @@
 note
 	description: "Contains the coefficients for a linear equation."
 	author: "Roman Schmocker"
-	date: "$Date$"
-	revision: "$Revision$"
 
 class
 	LINEAR_EQUATION
@@ -34,9 +32,9 @@ feature {CP_DYNAMIC_TYPE_IMPORTER} -- Initialization
 			l_count := other.count
 			make_filled (l_count)
 
-			collection_off
+			collection_off	-- disable garbage-collection
 			area.base_address.memory_copy (other.area.base_address, l_count * {PLATFORM}.real_64_bytes)
-			collection_on
+			collection_on	-- enable GC
 
 --			from
 --				idx := 1
@@ -49,13 +47,22 @@ feature {CP_DYNAMIC_TYPE_IMPORTER} -- Initialization
 --				l_count - idx + 1
 --			end
 		rescue
-			collection_on
+			collection_on	-- enable GC if we fail
 		end
 
 feature -- Mathematical operations
 
 	subtract (scalar: DOUBLE; subtrahend: separate LINEAR_EQUATION)
 			-- Subtract `scalar' times `subtrahend' from `Current'.
+		note
+			define_scalar: "[
+				Having an uninterrupted series of steps : GRADUATED, or 
+				capable of being represented by a point on a scale, or
+				of or relating to a scalar or scalar product
+				]"
+			define_subtrahend: "[
+				A quantity or number to be subtracted from another.
+				]"
 		require
 			same_count: subtrahend.count = count
 			not_equal: subtrahend /= Current

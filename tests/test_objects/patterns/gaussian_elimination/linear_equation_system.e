@@ -1,8 +1,8 @@
 note
 	description: "Systems of linear equations represented as a matrix."
 	author: "Roman Schmocker"
-	date: "$Date$"
-	revision: "$Revision$"
+	EIS: "name=example",
+			"src=https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:matrices/x9e81a4f98389efdf:representing-systems-with-matrices/a/representing-systems-with-matrices"
 
 deferred class
 	LINEAR_EQUATION_SYSTEM [G -> separate LINEAR_EQUATION]
@@ -115,6 +115,21 @@ feature -- Status report
 	is_singular: BOOLEAN
 			-- Is the matrix singular?
 			-- Note: Always False unless `solve' is called.
+		note
+			EIS: "name=example", "src=https://mathworld.wolfram.com/SingularMatrix.html"
+			define_matrix_singular: "[
+				A square matrix that does not have a matrix inverse. 
+				A matrix is singular if its determinant is 0.
+				]"
+			define_matrix_inverse: "[
+				The inverse of a square matrix A, sometimes called a reciprocal matrix, 
+				is a matrix A^(-1) such that:  AA^(-1)=I, where I is the identity matrix. 
+				Courant and Hilbert (1989, p. 10) use the notation A^_ to denote the 
+				inverse matrix.
+				]"
+		attribute
+			Result := False
+		end
 
 feature -- Basic operations
 
