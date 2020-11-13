@@ -85,7 +85,7 @@ feature {NONE} -- Initialization
 --			assert_strings_equal ("singular_matrix_solution", singular_matrix_solution, system.out)
 
 			-- The strings-equal assertions commented out above are tricky. I will attempt to
-			--	resolve them later. For the moment, I have left them commented to the test will
+			--	resolve them later. For the moment, I have left them commented so the test will
 			--	"pass", but mostly so you can see the expected outcomes. They are actually spot-on
 			--	except for twiddly-non-printable control characters that are flubbing the assertion.
 
