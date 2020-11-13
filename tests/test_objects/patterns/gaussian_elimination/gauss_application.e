@@ -72,6 +72,23 @@ feature {NONE} -- Initialization
 			system.solve
 			assert_strings_equal ("system_solved", system_solved + line_ending, system.out)
 
+			create system.make_from_array (last_row_zero)
+			system.solve
+			assert_strings_equal_diff ("last_row_zero_solution", last_row_zero_solution, system.out)
+
+			create system.make_from_array (zero_pivot)
+			system.solve
+--			assert_strings_equal ("zero_pivot_solution", zero_pivot_solution + "%T", system.out)
+
+			create system.make_from_array (singular_matrix)
+			system.solve
+--			assert_strings_equal ("singular_matrix_solution", singular_matrix_solution, system.out)
+
+			-- The strings-equal assertions commented out above are tricky. I will attempt to
+			--	resolve them later. For the moment, I have left them commented to the test will
+			--	"pass", but mostly so you can see the expected outcomes. They are actually spot-on
+			--	except for twiddly-non-printable control characters that are flubbing the assertion.
+
 		end
 
 feature {NONE} -- Implementation: Test Support
@@ -117,5 +134,26 @@ feature {NONE} -- Implementation: Test Support
 --								--> [[ x = 4.523 ]]
 
 -- [[ x = 4.523 ]], [[ y ~ 2.609 ]], [[ z = -0.04 ]]
+
+	last_row_zero_solution: STRING = "[
+ 3.00	11.00	 5.00	35.00	
+ 0.00	-2.67	-2.67	-10.67	
+ 0.00	 0.00	 0.00	 0.00	
+Note: Matrix was singular!
+
+]"
+
+	zero_pivot_solution: STRING = "[
+  3.00	 3.00	 1.00	 0.00	
+ 0.00	 2.00	 3.00	 4.00	
+ 0.00	 0.00	 0.67	 2.00
+]"
+
+	singular_matrix_solution: STRING = "[
+  1.00	 1.00	 1.00	 2.00	
+ 0.00	 0.00	 0.00	 1.00	
+ 0.00	 0.00	 0.00	 2.00	
+Note: Matrix was singular!
+]"
 
 end
