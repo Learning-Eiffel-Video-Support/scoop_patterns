@@ -126,6 +126,9 @@ feature -- Basic operations
 			loop
 					-- We can wait for termination of the tasks now.
 				promise_cursor.item.await_termination
+
+					-- We test to ensure successful termination.
+				assert_32 ("terminated", promise_cursor.item.is_successfully_terminated)
 			end
 
 				-- Every file has `content' at the end now.
@@ -159,9 +162,8 @@ feature -- Basic operations
 				l_result := promise_cursor.item.item
 
 					-- Check if the result is still `content', as it was written earlier.
-				check same_result: attached l_result and then l_result.ends_with (content) end
 				check has_result: attached l_result as al_result then
-					assert_booleans_equal ("result_has_content", True, al_result.has_substring (content))
+					assert_32 ("result_has_content", al_result.ends_with (content))
 				end
 			end
 		end
