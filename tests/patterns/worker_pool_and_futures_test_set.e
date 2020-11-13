@@ -1,10 +1,7 @@
 note
 	description: "[
-		Eiffel tests that can be executed by testing tool.
+		Demonstration of a Worker-pool reading/writing file I/O.
 	]"
-	author: "EiffelStudio test wizard"
-	date: "$Date$"
-	revision: "$Revision$"
 	testing: "type/manual"
 
 class
